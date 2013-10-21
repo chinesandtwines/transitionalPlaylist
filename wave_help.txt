@@ -1,0 +1,155 @@
+Help on module wave:
+
+NAME
+    wave - Stuff to parse WAVE files.
+
+FILE
+    c:\python27\lib\wave.py
+
+DESCRIPTION
+    Usage.
+    
+    Reading WAVE files:
+          f = wave.open(file, 'r')
+    where file is either the name of a file or an open file pointer.
+    The open file pointer must have methods read(), seek(), and close().
+    When the setpos() and rewind() methods are not used, the seek()
+    method is not  necessary.
+    
+    This returns an instance of a class with the following public methods:
+          getnchannels()  -- returns number of audio channels (1 for
+                             mono, 2 for stereo)
+          getsampwidth()  -- returns sample width in bytes
+          getframerate()  -- returns sampling frequency
+          getnframes()    -- returns number of audio frames
+          getcomptype()   -- returns compression type ('NONE' for linear samples)
+          getcompname()   -- returns human-readable version of
+                             compression type ('not compressed' linear samples)
+          getparams()     -- returns a tuple consisting of all of the
+                             above in the above order
+          getmarkers()    -- returns None (for compatibility with the
+                             aifc module)
+          getmark(id)     -- raises an error since the mark does not
+                             exist (for compatibility with the aifc module)
+          readframes(n)   -- returns at most n frames of audio
+          rewind()        -- rewind to the beginning of the audio stream
+          setpos(pos)     -- seek to the specified position
+          tell()          -- return the current position
+          close()         -- close the instance (make it unusable)
+    The position returned by tell() and the position given to setpos()
+    are compatible and have nothing to do with the actual position in the
+    file.
+    The close() method is called automatically when the class instance
+    is destroyed.
+    
+    Writing WAVE files:
+          f = wave.open(file, 'w')
+    where file is either the name of a file or an open file pointer.
+    The open file pointer must have methods write(), tell(), seek(), and
+    close().
+    
+    This returns an instance of a class with the following public methods:
+          setnchannels(n) -- set the number of channels
+          setsampwidth(n) -- set the sample width
+          setframerate(n) -- set the frame rate
+          setnframes(n)   -- set the number of frames
+          setcomptype(type, name)
+                          -- set the compression type and the
+                             human-readable compression type
+          setparams(tuple)
+                          -- set all parameters at once
+          tell()          -- return current position in output file
+          writeframesraw(data)
+                          -- write audio frames without pathing up the
+                             file header
+          writeframes(data)
+                          -- write audio frames and patch up the file header
+          close()         -- patch up the file header and close the
+                             output file
+    You should set the parameters before the first writeframesraw or
+    writeframes.  The total number of frames does not need to be set,
+    but when it is set to the correct value, the header does not have to
+    be patched up.
+    It is best to first set all parameters, perhaps possibly the
+    compression type, and then write audio frames using writeframesraw.
+    When all frames have been written, either call writeframes('') or
+    close() to patch up the sizes in the header.
+    The close() method is called automatically when the class instance
+    is destroyed.
+
+CLASSES
+    exceptions.Exception(exceptions.BaseException)
+        Error
+    
+    class Error(exceptions.Exception)
+     |  Method resolution order:
+     |      Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.Exception:
+     |  
+     |  __init__(...)
+     |      x.__init__(...) initializes x; see help(type(x)) for signature
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |  
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |  
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |  
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |  
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |  
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |      
+     |      Use of negative indices is not supported.
+     |  
+     |  __reduce__(...)
+     |  
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |  
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |  
+     |  __setstate__(...)
+     |  
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |  
+     |  __unicode__(...)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |  
+     |  __dict__
+     |  
+     |  args
+     |  
+     |  message
+
+FUNCTIONS
+    open(f, mode=None)
+    
+    openfp = open(f, mode=None)
+
+DATA
+    __all__ = ['open', 'openfp', 'Error']
